@@ -12,7 +12,7 @@ import (
 func main() {
 	var reindeers []int
 	idRenne := 0
-	inputScanner := getInput(1)
+	inputScanner := getInputForDay(1)
 	for inputScanner.Scan() {
 		//println(inputScanner.Text())
 
@@ -35,7 +35,7 @@ func main() {
 	println("Top 3: ", sum(reindeers[:3]))
 }
 
-func getInput(day int) *bufio.Scanner {
+func getInputForDay(day int) *bufio.Scanner {
 	pwd, _ := os.Getwd()
 	b, err := os.ReadFile(pwd + "/day" + strconv.Itoa(day) + "/input.txt")
 	if err != nil {

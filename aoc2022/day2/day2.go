@@ -17,7 +17,7 @@ func main() {
 		fmt.Printf("%v loses against %v\n", string(rules[getId(r)]), string(losesAgainst(r)))
 	}
 
-	inputScanner := getInput(2)
+	inputScanner := getInputForDay(2)
 
 	for inputScanner.Scan() {
 		//println(inputScanner.Text())
@@ -73,7 +73,7 @@ func losesAgainst(letter rune) rune {
 	return rules[opponentId]
 }
 
-func getInput(day int) *bufio.Scanner {
+func getInputForDay(day int) *bufio.Scanner {
 	pwd, _ := os.Getwd()
 	b, err := os.ReadFile(pwd + "/day" + strconv.Itoa(day) + "/input.txt")
 	if err != nil {
