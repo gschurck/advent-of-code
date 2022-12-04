@@ -37,9 +37,9 @@ def process_round(letter1: str, letter2: str):
 
     letter2 = expected_letter
 
-    letter2_id = get_id(letter2)
+    letter2_id: int = get_id(letter2)
     letter2: str = rules[letter2_id]
-    loser_letter = wins_against(letter2)
+    loser_letter: str = wins_against(letter2)
     if loser_letter == letter1:
         points += 6
     elif letter1 == letter2:
@@ -50,11 +50,11 @@ def process_round(letter1: str, letter2: str):
 print("Rules:")
 
 for r in ['A', 'B', 'C']:
-    print(f"{rules[get_id(r)]} wins against {loses_against(r)}")
+    print(f"{rules[get_id(r)]} wins against {wins_against(r)}")
     print(f"{rules[get_id(r)]} loses against {loses_against(r)}")
 
 for r in ['X', 'Y', 'Z']:
-    print(f"{rules[get_id(r)]} wins against {loses_against(r)}")
+    print(f"{rules[get_id(r)]} wins against {wins_against(r)}")
     print(f"{rules[get_id(r)]} loses against {loses_against(r)}")
 
 for line in io.StringIO(input):
