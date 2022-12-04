@@ -26,6 +26,7 @@ def loses_against(letter: str) -> str:
 def process_round(letter1: str, letter2: str):
     global points
 
+    # Star #2
     match letter2:
         case 'X':
             expected_letter = wins_against(letter1)
