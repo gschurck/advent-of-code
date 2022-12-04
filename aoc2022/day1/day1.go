@@ -9,24 +9,12 @@ import (
 	"strings"
 )
 
-func getInput(day int) *bufio.Scanner {
-	pwd, _ := os.Getwd()
-	b, err := os.ReadFile(pwd + "/day" + strconv.Itoa(day) + "/input.txt")
-	if err != nil {
-		fmt.Print(err)
-	}
-	str := string(b)
-	println(str)
-	return bufio.NewScanner(strings.NewReader(str))
-}
-
 func main() {
-
 	var reindeers []int
 	idRenne := 0
 	inputScanner := getInput(1)
 	for inputScanner.Scan() {
-		println(inputScanner.Text())
+		//println(inputScanner.Text())
 
 		if inputScanner.Text() == "" {
 			idRenne++
@@ -45,6 +33,16 @@ func main() {
 
 	println("#1 Reindeer: ", reindeers[0])
 	println("Top 3: ", sum(reindeers[:3]))
+}
+
+func getInput(day int) *bufio.Scanner {
+	pwd, _ := os.Getwd()
+	b, err := os.ReadFile(pwd + "/day" + strconv.Itoa(day) + "/input.txt")
+	if err != nil {
+		fmt.Print(err)
+	}
+	str := string(b)
+	return bufio.NewScanner(strings.NewReader(str))
 }
 
 func sum(array []int) int {
