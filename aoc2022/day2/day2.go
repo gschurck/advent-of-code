@@ -33,7 +33,7 @@ func main() {
 
 func processRound(letter1 rune, letter2 rune) {
 	var expectedLetter rune
-
+	// Star #2
 	switch letter2 {
 	case 'X':
 		expectedLetter = winsAgainst(letter1)
