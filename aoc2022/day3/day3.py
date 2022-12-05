@@ -8,24 +8,24 @@ sum = 0
 
 def get_priority(item_type):
     if ord('a') <= ord(item_type) <= ord('z'):
-        subs = 96
+        ascii_subs = 96
     else:
-        subs = 38
-    priority = ord(item_type) - subs
+        ascii_subs = 38
+    priority = ord(item_type) - ascii_subs
     return priority
 
 
 def get_sets_item_priority(lines):
     sets = []
-    for line in lines:
-        sets.append(set(line))
+    for group in lines:
+        sets.append(set(group))
     diff = set.intersection(*sets)
     item_type = list(diff)[0]
     return get_priority(item_type)
 
 
-for group in io.StringIO(input):
-    clean_line = group.strip('\n')
+for line in io.StringIO(input):
+    clean_line = line.strip('\n')
     half = int(len(clean_line) / 2)
     first_compart = clean_line[:half]
     second_compart = clean_line[half:]
