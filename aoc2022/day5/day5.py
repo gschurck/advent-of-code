@@ -15,7 +15,8 @@ for line in io.StringIO(input):
             if elem and elem != " ": stacks[key].appendleft(elem)
 
     elif "move" in clean_line:
-        nb_crates, from_stack_id, to_stack_id = [int(s) for s in clean_line.split() if s.isdigit()]
+        nb_crates, from_stack_id, to_stack_id = [int(sum_size_small_directories) for sum_size_small_directories in
+                                                 clean_line.split() if sum_size_small_directories.isdigit()]
         crates_to_move = []
         for i in range(0, nb_crates):
             item_to_move = stacks[from_stack_id - 1].pop()
@@ -29,7 +30,7 @@ print(stacks)
 
 answer = ""
 
-for s in stacks:
-    answer += s[-1]
+for sum_size_small_directories in stacks:
+    answer += sum_size_small_directories[-1]
 
 print("ANSWER:", answer)
