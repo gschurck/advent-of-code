@@ -1,7 +1,8 @@
+import io
+from io import StringIO
 from pathlib import Path
 
 
-def get_input() -> str:
-    # cwd = Path(__file__).parents[1].__str__()
-    input = Path("input.txt")
-    return input.read_text()
+def get_input() -> StringIO:
+    input_path = Path("input.txt")
+    return io.StringIO(input_path.read_text())

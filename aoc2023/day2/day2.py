@@ -2,11 +2,10 @@ import io
 
 from aoc import get_input
 
-input = get_input()
 sum = 0
 sum2 = 0
 
-for game_id, line in enumerate(io.StringIO(input)):
+for game_id, line in enumerate(get_input()):
     impossible = False
     line = line.strip('\n')
     print(line)
@@ -58,5 +57,5 @@ for game_id, line in enumerate(io.StringIO(input)):
     print("sum " + str(game_id + 1))
     sum += game_id + 1
 
-print("\nPart 1: ", sum)
+# print("\nPart 1: ", sum)
 print("\nPart 2: ", sum2)
