@@ -2,7 +2,6 @@ import io
 
 from aoc import get_input
 
-input = get_input()
 sum = 0
 
 digits = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9}
@@ -21,7 +20,7 @@ def process_char(char, line_part, reversed=False):
     return None, line_part
 
 
-for line in io.StringIO(input):
+for line in get_input():
     clean_line = line.strip('\n')
     print(clean_line)
     line_part = ""
