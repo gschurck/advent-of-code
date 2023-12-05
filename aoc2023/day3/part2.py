@@ -1,3 +1,4 @@
+import math
 from typing import List, Dict, Tuple
 
 from aoc import get_input
@@ -48,17 +49,19 @@ for id_line, line in enumerate(get_input()):
     if new_number_string:
         add_number(new_number_string, new_number_coords, last_id_char, numbers)
 
-gear_values = []
 for symbol_x, symbol_line in symbols:
-    gear_value = 1
-    gear_value *= get_close_number_value(numbers, symbol_x - 1, symbol_line - 1) or 1
-    gear_value *= get_close_number_value(numbers, symbol_x, symbol_line - 1) or 1
-    gear_value *= get_close_number_value(numbers, symbol_x + 1, symbol_line - 1) or 1
-    gear_value *= get_close_number_value(numbers, symbol_x + 1, symbol_line) or 1
-    gear_value *= get_close_number_value(numbers, symbol_x + 1, symbol_line + 1) or 1
-    gear_value *= get_close_number_value(numbers, symbol_x, symbol_line + 1) or 1
-    gear_value *= get_close_number_value(numbers, symbol_x - 1, symbol_line + 1) or 1
-    gear_value *= get_close_number_value(numbers, symbol_x - 1, symbol_line) or 1
-    result += gear_value
+    values = [get_close_number_value(numbers, symbol_x - 1, symbol_line - 1) or None,
+              get_close_number_value(numbers, symbol_x, symbol_line - 1) or None,
+              get_close_number_value(numbers, symbol_x + 1, symbol_line - 1) or None,
+              get_close_number_value(numbers, symbol_x + 1, symbol_line) or None,
+              get_close_number_value(numbers, symbol_x + 1, symbol_line + 1) or None,
+              get_close_number_value(numbers, symbol_x, symbol_line + 1) or None,
+              get_close_number_value(numbers, symbol_x - 1, symbol_line + 1) or None,
+              get_close_number_value(numbers, symbol_x - 1, symbol_line) or None]
+    values = list(filter(None, values))
+    print(values)
+    if len(values) != 2:
+        continue
+    result += math.prod(values)
 
 print("Result: ", result)
