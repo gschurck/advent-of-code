@@ -23,7 +23,18 @@ fn check_char(
             match iterator_value {
                 Some(next_char) => {
                     if char == next_char {
-                        debug_table[y][x] = '.';
+                        debug_table[y][x] = if char == 'X' {
+                            '1'
+                        } else if char == 'M' {
+                            '2'
+                        } else if char == 'A' {
+                            '3'
+                        } else {
+                            '4'
+                        };
+                        if char == 'S' {
+                            return GoodWord;
+                        }
                         GoodChar
                     } else {
                         WrongChar
@@ -99,7 +110,8 @@ fn move_all_in_direction(
     debug_table: &mut Vec<Vec<char>>,
 ) -> i32 {
     let mut sum = 0;
-    // Previous move_x becomes:
+
+    // // move x
     sum += move_in_direction(
         Direction::Horizontal(direction),
         x,
@@ -110,8 +122,7 @@ fn move_all_in_direction(
     )
     .0;
 
-    // Previous move_y becomes:
-
+    // // move y
     sum += move_in_direction(
         Direction::Vertical(direction),
         x,
@@ -122,9 +133,9 @@ fn move_all_in_direction(
     )
     .0;
 
-    // Previous move_top_left_bot_right becomes:
+    // move bot left top right
     sum += move_in_direction(
-        Direction::Diagonal(-direction, direction),
+        Direction::Diagonal(direction, -direction),
         x,
         y,
         xmas.chars(),
@@ -133,9 +144,9 @@ fn move_all_in_direction(
     )
     .0;
 
-    // Previous move_bot_left_top_right becomes:
+    // top left bot right
     sum += move_in_direction(
-        Direction::Diagonal(direction, -direction),
+        Direction::Diagonal(direction, direction),
         x,
         y,
         xmas.chars(),
@@ -172,9 +183,15 @@ fn main() -> io::Result<()> {
         }
     }
 
-    println!("Result {}", sum);
-    for line in debug_table {
-        println!("{:?}", line);
+    for line in table {
+        println!("{:?}", String::from_iter(line));
     }
+    println!("-----");
+    for line in debug_table {
+        println!("{:?}", String::from_iter(line));
+    }
+
+    println!("Result {}", sum);
+
     Ok(())
 }
